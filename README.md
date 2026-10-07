@@ -11,7 +11,9 @@ PulseCity AI is a proposed open-source AI-powered civic intelligence platform th
 
 ---
 
-## 1. What is built
+## 1.Proposed Solution.
+
+PulseCity AI is a proposed AI-powered civic intelligence platform
 
 ### Core workflow
 - **Report an Issue** — validated form (title, category, description, location,
@@ -48,7 +50,7 @@ Manish Nagar, Sadar, Civil Lines, Wardha Road). Every demo row is stored with
 `is_demo = 1` and surfaced in the UI as **SAMPLE DATA**, so it is never confused
 with a citizen submission.   
 
-##.2. System Architectur
+##.2.System Architectur
 
 
 ```text
@@ -111,7 +113,19 @@ The model will help:
 The model is a core component of the system rather than an
 optional chatbot. 
 ---  
- ## 4. Security
+##.4.Data Flow
+
+1. A citizen submits a civic issue.
+2. The backend validates the report.
+3. The report is sent to the open-source AI model.
+4. The AI analyzes the issue and generates structured results.
+5. The results are stored with the original report.
+6. Related reports are identified and grouped.
+7. Aggregated data is used to generate city-level insights.
+8. Citizens and operators view the information through the dashboard,
+   map, and reports interface.
+   
+ ##.5. Security
 
 - All third-party API calls happen **server-side**; no keys reach the client.
 - `Validator` enforces required fields, lengths, enums and numeric ranges;
@@ -126,7 +140,7 @@ optional chatbot.
 
 ---
 
-##.5.Problem
+##.6.Problem
 
 Problems such as:
 
@@ -137,7 +151,7 @@ Problems such as:
 * City decision-makers need structured insights.
 ---
 
-##.6.How It Will Work
+##.7.How It Will Work
 
 1. Citizen opens PulseCity AI.
 2. Citizen reports a local issue.
@@ -150,18 +164,34 @@ Problems such as:
 
 
 ---
+\##.8.Implementation Plan
 
-## 7. Not yet implemented
+### Phase 1 — Core Application
+Build the report submission and city dashboard.
 
-- Real citizen authentication (the demo uses a seeded citizen + operator session)
-- Live municipal system integration (SCADA, complaint gateways)
-- Push/email/SMS notification delivery (in-app notifications only)
-- Automatic geocoding of free-text addresses (coordinates come from the
-  neighbourhood grid or a map pin)
-- Photo moderation and EXIF stripping
-- Multi-city data partitioning (the city selector is presentational)
-- OpenSearch/DynamoDB backfills and migrations for existing data
+### Phase 2 — Open-Source AI
+Integrate the selected open-source/open-weight model.
+
+### Phase 3 — Civic Intelligence
+Implement classification, severity, priority, related issues,
+and recommended actions.
+
+### Phase 4 — City Analytics
+Build the map, trends, community signals, and AI insights.
+
+### Phase 5 — Testing
+Evaluate AI outputs using representative civic reports.
+
+### Phase 6 — Final Demo
+Deploy and demonstrate the complete working system.
 
 ---
+##.9. Scalability
 
+PulseCity AI is designed to support expansion from a single city
+to multiple cities by separating civic reports, locations,
+analytics, and city-specific configurations.
+
+The architecture can later support larger datasets, additional
+AI models, and integrations with municipal systems.
 
