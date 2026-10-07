@@ -48,27 +48,52 @@ Manish Nagar, Sadar, Civil Lines, Wardha Road). Every demo row is stored with
 `is_demo = 1` and surfaced in the UI as **SAMPLE DATA**, so it is never confused
 with a citizen submission.   
 
-##.2.Architectur
+##.2. System Architectur
 
-Citizen
-   ↓
-PulseCity AI
-   ↓
-Report Processing
-   ↓
-Open-Source AI Model
-   ↓
-Issue Analysis
-   ├── Category
-   ├── Severity
-   ├── Priority
-   ├── Summary
-   ├── Related Issues
-   └── Recommended Action
-   ↓
-Database
-   ↓
-City Dashboard / Map / AI Insights      
+
+```text
+┌──────────────────────┐
+│      Citizens        │
+│  Report Civic Issue  │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│   PulseCity AI App   │
+│  Report / Map / UI   │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│   Backend / API      │
+│ Validation & Storage │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Open-Source AI Model │
+│                      │
+│ • Classification     │
+│ • Severity           │
+│ • Priority           │
+│ • Summarization      │
+│ • Related Issues     │
+│ • Recommendations    │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│       Database       │
+│ Reports + Analysis   │
+└──────────┬───────────┘
+           │
+           ▼
+┌────────────────────────────────┐
+│       City Intelligence        │
+│                                │
+│ Dashboard │ Map │ Insights     │
+│ Operations │ Reports            │
+└────────────────────────────────┘
 
 ##.3.Open-Source AI
 
