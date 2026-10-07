@@ -97,7 +97,7 @@ with a citizen submission.
 │ Operations │ Reports            │
 └────────────────────────────────┘
 
-##.3.Open-Source AI
+## 3.Open-Source AI
 
 PulseCity AI will use an open-weight language model as the
 core intelligence layer for analyzing citizen reports.
@@ -113,7 +113,7 @@ The model will help:
 The model is a core component of the system rather than an
 optional chatbot. 
 ---  
-##.4.Data Flow
+## 4.Data Flow
 
 1. A citizen submits a civic issue.
 2. The backend validates the report.
@@ -125,7 +125,7 @@ optional chatbot.
 8. Citizens and operators view the information through the dashboard,
    map, and reports interface.
    
- ##.5. Security
+ ## 5. Security
 
 - All third-party API calls happen **server-side**; no keys reach the client.
 - `Validator` enforces required fields, lengths, enums and numeric ranges;
@@ -140,7 +140,7 @@ optional chatbot.
 
 ---
 
-##.6.Problem
+## 6.Problem
 
 Problems such as:
 
@@ -151,7 +151,7 @@ Problems such as:
 * City decision-makers need structured insights.
 ---
 
-##.7.How It Will Work
+## 7.How It Will Work
 
 1. Citizen opens PulseCity AI.
 2. Citizen reports a local issue.
@@ -164,7 +164,7 @@ Problems such as:
 
 
 ---
-\##.8.Implementation Plan
+## 8.Implementation Plan
 
 ### Phase 1 — Core Application
 Build the report submission and city dashboard.
@@ -186,7 +186,7 @@ Evaluate AI outputs using representative civic reports.
 Deploy and demonstrate the complete working system.
 
 ---
-##.9. Scalability
+## 9. Scalability
 
 PulseCity AI is designed to support expansion from a single city
 to multiple cities by separating civic reports, locations,
