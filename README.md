@@ -149,44 +149,8 @@ raised **High → Critical**, priority **Urgent**, a summary referencing school
 children and two-wheeler riders, and an action that consolidated the 4 similar
 reports already logged in Dharampeth.
 
----
-
-## 4. AWS-ready architecture
-
-Every external dependency sits behind an interface with two implementations, so
-moving to AWS is a configuration change rather than a rewrite.
-
-| Concern | Active (edge) | AWS target | Adapter |
-| --- | --- | --- | --- |
-| Database | Cloudflare D1 | **Amazon DynamoDB** | `src/services/database.ts` |
-| AI | Local analyser / OpenAI-compatible | **Amazon Bedrock** | `src/services/ai/index.ts` |
-| File storage | R2 / inline | **Amazon S3** | `src/services/storage.ts` |
-| Search & analytics | In-worker scorer | **Amazon OpenSearch** | `src/services/search.ts` |
-| Maps | Leaflet + OSM | **Amazon Location Service** | `src/services/map.ts` |
-| Compute | Cloudflare Workers | **AWS Lambda + API Gateway** | `src/api/*` |
-
-The **DynamoDB adapter is a real single-table implementation** (PK/SK plus
-`EntityIndex` / `StatusIndex` / `AreaIndex` GSIs, SigV4-signed with Web Crypto).
-It activates automatically when `DYNAMODB_TABLE` and AWS credentials are present.
-The API routers are pure handlers using only Web platform APIs, so they run
-unchanged on Lambda.
-
-`GET /api/platform/status` reports which adapters are active and what each AWS
-service would replace. It returns **presence flags only — never credential values**.
-
-### Environment configuration
-See **`.dev.vars.example`** for the full annotated template. Credentials are read
-from Worker secrets only and are never exposed to the browser:
-
-```bash
-npx wrangler pages secret put BEDROCK_API_KEY
-npx wrangler pages secret put AWS_ACCESS_KEY_ID
-npx wrangler pages secret put AWS_SECRET_ACCESS_KEY
-```
-
----
-
-## 5. Security
+---  
+ ## 4. Security
 
 - All third-party API calls happen **server-side**; no keys reach the client.
 - `Validator` enforces required fields, lengths, enums and numeric ranges;
@@ -201,7 +165,7 @@ npx wrangler pages secret put AWS_SECRET_ACCESS_KEY
 
 ---
 
-## 6. Tech stack
+## 5. Tech stack
 
 - **Hono** on **Cloudflare Workers / Pages** — server-rendered JSX, no client framework
 - **Cloudflare D1** (SQLite) — schema and demo seed applied idempotently on boot
@@ -211,62 +175,7 @@ npx wrangler pages secret put AWS_SECRET_ACCESS_KEY
 
 ---
 
-## 7. Run it locally
-
-```bash
-npm install
-npm run build
-npm run dev:local          # http://localhost:3000
-```
-
-In the sandbox:
-
-```bash
-npm run build
-pm2 start ecosystem.config.cjs
-pm2 logs pulsecity-ai --nostream
-```
-
-The database schema and the 14-report demo dataset are created automatically on
-the first request. To start clean: `npm run db:reset`.
-
----
-
-## 8. Project structure
-
-```
-src/
-  index.tsx              entry point, HTML routes, error boundary
-  types.ts               shared domain types
-  components/
-    Layout.tsx           sidebar, topbar, notifications, bottom nav, toasts
-    ui.tsx               badges, metric cards, report/insight cards, timeline
-  pages/                 one file per page (Dashboard, CityPulse, AiInsights,
-                         SmartMap, CommunitySignals, MyReports, ReportDetails,
-                         Operations, ReportIssue)
-  api/
-    reports.ts ai.ts analytics.ts operations.ts map.ts search.ts
-    files.ts notifications.ts platform.ts
-    middleware.ts        validation, rate limiting, error envelope
-    context.ts           per-request service container
-  services/
-    ai/                  AIService, providers, local engine, signals
-    database.ts          D1 + DynamoDB adapters
-    storage.ts           R2 + S3 + inline adapters
-    search.ts            local + OpenSearch adapters
-    map.ts               Leaflet/OSM + GeoJSON adapters
-    aws.ts               AWS readiness reporting
-  db/
-    schema.ts            DDL + demo dataset
-    repo.ts              repository layer (the only SQL in the app)
-  lib/geo.ts             city data, geocoding, distance, formatting
-public/static/           styles.css + client JS modules
-migrations/0001_init.sql explicit migration
-```
-
----
-
-## 9. Demo script (all verified working)
+## 6. Demo script (all verified working)
 
 1. Open `/` — dashboard with live statistics from the seeded demo dataset.
 2. Open `/city-pulse` — health score, trends, distributions, neighbourhood table.
@@ -302,7 +211,7 @@ migrations/0001_init.sql explicit migration
 
 ---
 
-## 10. Real map (geolocation + location picker)
+## 7. Real map (geolocation + location picker)
 
 The map is a genuine interactive map — Leaflet 1.9.4 with CARTO/OpenStreetMap
 tiles — not a static image.
@@ -330,7 +239,7 @@ permission is denied — the citizen can simply tap the map instead.
 
 ---
 
-## 11. Not yet implemented
+## 8. Not yet implemented
 
 - Real citizen authentication (the demo uses a seeded citizen + operator session)
 - Live municipal system integration (SCADA, complaint gateways)
@@ -343,7 +252,7 @@ permission is denied — the citizen can simply tap the map instead.
 
 ---
 
-## 12. Recommended next steps
+## 9. Recommended next steps
 
 1. Connect **Amazon Bedrock** (`BEDROCK_MODEL_ID` + credentials) to move analysis
    from the local engine to a hosted model — no frontend changes required.
@@ -357,9 +266,3 @@ permission is denied — the citizen can simply tap the map instead.
 
 ---
 
-## Deployment
-
-- **Platform**: Cloudflare Pages (edge), AWS-portable
-- **Status**: ✅ Running locally and in the sandbox preview
-- **Tech stack**: Hono + TypeScript + Cloudflare D1 + Leaflet + Chart.js
-- **Last updated**: 2026-09-20
