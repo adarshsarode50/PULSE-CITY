@@ -1,4 +1,4 @@
-# PulseCity AI
+# PULSE CITY
 
 > **Understand Your City. Improve Your Community.**
 
