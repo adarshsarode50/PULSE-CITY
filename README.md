@@ -7,19 +7,11 @@ problems, the AI analyses each report the moment it is submitted, and the
 platform turns those reports into city-level patterns, insights and actionable
 work queues for community organisations and municipal authorities.
 
-This is a **working MVP**, not a prototype: report submission, persistent storage,
+This is a **working MVP** prototype: report submission, persistent storage,
 AI analysis, city analytics, insight generation, an interactive map, search,
 status tracking and an operator console are all functional end-to-end.
 
 ---
-
-## Live URLs
-
-| Environment | URL |
-| --- | --- |
-| Sandbox preview | `http://localhost:3000` |
-| Public sandbox URL | provided by the platform (port 3000) |
-| Production (Cloudflare Pages) | _pending deployment_ |
 
 ---
 
