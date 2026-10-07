@@ -10,8 +10,25 @@ work queues for community organisations and municipal authorities.
 PulseCity AI is a proposed open-source AI-powered civic intelligence platform that will be implemented during the final hackathon. An existing prototype was used to validate the product concept and user experience.
 
 ---
+## 1.Problem
 
-## 1.Proposed Solution.
+Problems such as:
+
+* Citizens don't have an effective way to report local problems.
+* Municipal teams can receive many scattered complaints.
+* Important patterns can be difficult to identify.
+* Similar complaints may be duplicated.
+* City decision-makers need structured insights.
+
+
+
+### Demo data
+14 realistic reports across real Nagpur neighbourhoods (Dharampeth, Sitabuldi,
+Manish Nagar, Sadar, Civil Lines, Wardha Road). Every demo row is stored with
+`is_demo = 1` and surfaced in the UI as **SAMPLE DATA**, so it is never confused
+with a citizen submission.   
+
+## 2.Proposed Solution.
 
 PulseCity AI is a proposed AI-powered civic intelligence platform
 
@@ -43,17 +60,7 @@ PulseCity AI is a proposed AI-powered civic intelligence platform
   an unread badge and mark-as-read.
 
 
-
-### Demo data
-14 realistic reports across real Nagpur neighbourhoods (Dharampeth, Sitabuldi,
-Manish Nagar, Sadar, Civil Lines, Wardha Road). Every demo row is stored with
-`is_demo = 1` and surfaced in the UI as **SAMPLE DATA**, so it is never confused
-with a citizen submission.   
-
-
-
-
-## 2.Open-Source AI
+## 3.Open-Source AI
 
 PulseCity AI will use an open-weight language model as the
 core intelligence layer for analyzing citizen reports.
@@ -69,7 +76,7 @@ The model will help:
 The model is a core component of the system rather than an
 optional chatbot. 
 
-## 3.Data Flow
+## 4.Data Flow
 
 1. A citizen submits a civic issue.
 2. The backend validates the report.
@@ -81,33 +88,7 @@ optional chatbot.
 8. Citizens and operators view the information through the dashboard,
    map, and reports interface.
    
- ## 4.Security
-
-- All third-party API calls happen **server-side**; no keys reach the client.
-- `Validator` enforces required fields, lengths, enums and numeric ranges;
-  `sanitizeText()` strips tags and script payloads from free text.
-- `assertOperator()` gates every `/api/operations/*` route server-side.
-- Uploads are validated by MIME type and size before touching storage.
-- `secureHeaders()` sets a Content-Security-Policy; responses carry
-  `X-Content-Type-Options` and `Referrer-Policy`.
-- A fixed-window rate limiter protects report submission, AI, upload and search.
-- Errors return a stable JSON envelope with a request id; internals are logged,
-  never returned.
-
-
-
-## 5.Problem
-
-Problems such as:
-
-* Citizens don't have an effective way to report local problems.
-* Municipal teams can receive many scattered complaints.
-* Important patterns can be difficult to identify.
-* Similar complaints may be duplicated.
-* City decision-makers need structured insights.
-
-
-## 6.How It Will Work
+## 5.How It Will Work
 
 1. Citizen opens PulseCity AI.
 2. Citizen reports a local issue.
@@ -120,7 +101,7 @@ Problems such as:
 
 
 
-## 7.Implementation Plan
+## 6.Implementation Plan
 
 ### Phase 1 — Core Application
 Build the report submission and city dashboard.
@@ -141,6 +122,18 @@ Evaluate AI outputs using representative civic reports.
 ### Phase 6 — Final Demo
 Deploy and demonstrate the complete working system.
 
+ ## 7.Security
+
+- All third-party API calls happen **server-side**; no keys reach the client.
+- `Validator` enforces required fields, lengths, enums and numeric ranges;
+  `sanitizeText()` strips tags and script payloads from free text.
+- `assertOperator()` gates every `/api/operations/*` route server-side.
+- Uploads are validated by MIME type and size before touching storage.
+- `secureHeaders()` sets a Content-Security-Policy; responses carry
+  `X-Content-Type-Options` and `Referrer-Policy`.
+- A fixed-window rate limiter protects report submission, AI, upload and search.
+- Errors return a stable JSON envelope with a request id; internals are logged,
+  never returned.
 
 ## 8. Scalability
 
