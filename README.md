@@ -50,7 +50,7 @@ Manish Nagar, Sadar, Civil Lines, Wardha Road). Every demo row is stored with
 `is_demo = 1` and surfaced in the UI as **SAMPLE DATA**, so it is never confused
 with a citizen submission.   
 
-##.2.System Architecture
+## 2.System Architecture
 
 
 ```text
