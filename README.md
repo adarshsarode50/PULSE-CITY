@@ -52,7 +52,7 @@ with a citizen submission.
 
 ## 2.System Architecture
 
-```text```
+``text`
 
 ┌──────────────────────┐
 │      Citizens        │
