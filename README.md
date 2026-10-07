@@ -46,7 +46,10 @@ PulseCity AI is a proposed open-source AI-powered civic intelligence platform th
 14 realistic reports across real Nagpur neighbourhoods (Dharampeth, Sitabuldi,
 Manish Nagar, Sadar, Civil Lines, Wardha Road). Every demo row is stored with
 `is_demo = 1` and surfaced in the UI as **SAMPLE DATA**, so it is never confused
-with a citizen submission.                                                                                                                                                                                                                                                                                                                                                             ##.2.Architecture                                                                                                                                        
+with a citizen submission.   
+
+##.2.Architectur
+
 Citizen
    ↓
 PulseCity AI
@@ -65,7 +68,9 @@ Issue Analysis
    ↓
 Database
    ↓
-City Dashboard / Map / AI Insights                                                                                                                                                                                                                                                                                                                                                    ##.3.Open-Source AI
+City Dashboard / Map / AI Insights      
+
+##.3.Open-Source AI
 
 PulseCity AI will use an open-weight language model as the
 core intelligence layer for analyzing citizen reports.
